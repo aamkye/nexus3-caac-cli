@@ -10,7 +10,7 @@ metadata:
 type: Opaque
 data:
   {{- with .Values.configSecrets }}
-  nexus-secrets.yaml: {{- toYaml . | nindent 4 }}
+  nexus-secrets-yaml: {{- toYaml . | nindent 4 }}
   {{- end }}
 ---
 apiVersion: v1
@@ -23,5 +23,5 @@ metadata:
     nexus3caac: active
 data:
   {{- with .Values.config }}
-  nexus.yml: {{- toYaml . | nindent 4 }}
+  nexus-yml: {{- toYaml . | nindent 4 }}
   {{- end }}
