@@ -53,11 +53,14 @@ jobs:
     needs: lint-chart
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - name: Run helm-docs
         run: .github/helm-docs.sh
 
-  kubeval-chart:
+  kubeconform-chart:
     runs-on: ubuntu-latest
     needs:
       - lint-chart
@@ -65,23 +68,59 @@ jobs:
     strategy:
       matrix:
         k8s:
-          - v1.25.2
-          - v1.25.0
-          - v1.24.6
-          - v1.24.4
-          - V1.23.12
-          - V1.23.10
-          - v1.22.15
-          - V1.22.13
-          - v1.21.14
-          - v1.20.15
-          - v1.19.16
-          - v1.18.20
-          - V1.1717
-          - v1.16.15
+          - 1.25.2
+          - 1.25.0
+          - 1.24.6
+          - 1.24.4
+          - 1.23.12
+          - 1.23.10
+          - 1.22.15
+          - 1.22.13
+          - 1.21.14
+          - 1.20.15
+          - 1.19.16
+          - 1.18.20
+          - 1.17.17
+          - 1.16.15
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Run kubeval
+        env:
+          KUBERNETES_VERSION: ${{ matrix.k8s }}
+        run: .github/kubeval.sh
+
+  kube-score-chart:
+    runs-on: ubuntu-latest
+    needs:
+      - lint-chart
+      - lint-docs
+    strategy:
+      matrix:
+        k8s:
+          - 1.25.2
+          - 1.25.0
+          - 1.24.6
+          - 1.24.4
+          - 1.23.12
+          - 1.23.10
+          - 1.22.15
+          - 1.22.13
+          - 1.21.14
+          - 1.20.15
+          - 1.19.16
+          - 1.18.20
+          - 1.17.17
+          - 1.16.15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - name: Run kubeval
         env:
           KUBERNETES_VERSION: ${{ matrix.k8s }}
@@ -97,27 +136,31 @@ jobs:
     strategy:
       matrix:
         k8s:
-          - v1.25.2
-          - v1.25.0
-          - v1.24.6
-          - v1.24.4
-          - V1.23.12
-          - V1.23.10
-          - v1.22.15
-          - V1.22.13
-          - v1.21.14
-          - v1.20.15
-          - v1.19.16
-          - v1.18.20
-          - V1.1717
-          - v1.16.15
+          - 1.25.2
+          - 1.25.0
+          - 1.24.6
+          - 1.24.4
+          - 1.23.12
+          - 1.23.10
+          - 1.22.15
+          - 1.22.13
+          - 1.21.14
+          - 1.20.15
+          - 1.19.16
+          - 1.18.20
+          - 1.17.17
+          - 1.16.15
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - name: Create kind ${{ matrix.k8s }} cluster
         uses: helm/kind-action@main
         with:
           node_image: kindest/node:${{ matrix.k8s }}
+
       - name: Run chart-testing (install)
         uses: helm/chart-testing-action@main
         with:
