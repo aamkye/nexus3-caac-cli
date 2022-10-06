@@ -1,11 +1,11 @@
 config:
   nexus:
-    baseUrl: http://localhost:8081  # URL to reach Nexus 3 UI
-    anonymousAccessEnabled: false   # If anonymous users can access to Nexus 3
+    baseUrl: http://localhost:8081
+    anonymousAccessEnabled: false
     defaults:
-      adminUser: admin              # Default admin user
-      adminPassword: admin123       # Default admin password
-    deleteUnknownItems:             # To delete existing items in Nexus but not in YAML
+      adminUser: admin
+      adminPassword: admin123
+    deleteUnknownItems:
       blobstores: false
       contentSelectors: false
       cleanupPolicies: false
@@ -38,7 +38,7 @@ extraLabels: {}
 annotations: {}
 image:
   repository: aamkye/nexus3caac-cli
-  tag: "latest"
+  tag: latest
   pullPolicy: IfNotPresent
 namespace: nexus
 serviceAccountName: nexus3caac
