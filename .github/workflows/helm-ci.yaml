@@ -123,7 +123,5 @@ jobs:
 
       - uses: helm/chart-testing-action@main
 
-      - uses: helm/kind-action@v${{ matrix.k8s }}
-
       - name: Run chart-testing (install)
         run: ct install
