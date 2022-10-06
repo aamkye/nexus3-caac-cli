@@ -12,5 +12,5 @@ tar -xf /tmp/kubeval.tar.gz kubeval
 
 # validate charts
 for CHART_DIR in ${CHART_DIRS}; do
-  helm template "${CHART_DIR}" | ./kubeval --strict --ignore-missing-schemas --kubernetes-version "${KUBERNETES_VERSION#v}" --schema-location "${SCHEMA_LOCATION}"
+  helm template "${CHART_DIR}" -f "${CHART_DIR}"/values.yml | ./kubeval --strict --ignore-missing-schemas --kubernetes-version "${KUBERNETES_VERSION#v}" --schema-location "${SCHEMA_LOCATION}"
 done
