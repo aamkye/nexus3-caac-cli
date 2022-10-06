@@ -3,7 +3,7 @@ name: nexus-config-as-a-code-cli
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 0.0.6
+version: 0.0.8
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
 appVersion: 1.0.0
@@ -37,7 +37,7 @@ keywords:
 # home: n/a
 # icon: n/a
 sources:
-  - https://github.com/sonatype/nexus-public
+  - https://github.com/aamkye/nexus3-caac-cli
 maintainers:
   - email:  amadeusz.kryze@gmail.com
     name: Amadeusz

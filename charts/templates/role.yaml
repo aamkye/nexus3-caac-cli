@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: nexus3caac-configmap-secret-reader-role
+  name: nexus3caac-configmap-and-secret-reader-role
   namespace: {{ .Values.namespace }}
   labels:
     app: nexus3caac

@@ -9,9 +9,9 @@ metadata:
     nexus3caac: active
 type: Opaque
 data:
-  nexus-secrets.yaml: |
-    bmV4dXM6CiAgICBhZG1pblBhc3N3b3JkOiBteVN1cDNyUEBzc3cwcmQ=
-
+  {{- with .Values.configSecrets }}
+  nexus-secrets.yaml: {{- toYaml . | nindent 4 }}
+  {{- end }}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -22,15 +22,6 @@ metadata:
     app: nexus3caac
     nexus3caac: active
 data:
-  nexus.yml: |
-    nexus:
-      anonymousAccessEnabled: false
-    realms:
-      - name: Docker Bearer Token Realm
-        enabled: true
-      - name: npm Bearer Token Realm
-        enabled: true
-    blobStores:
-    - name: local
-      type: file
-      path: local
+  {{- with .Values.config }}
+  nexus.yml: {{- toYaml . | nindent 4 }}
+  {{- end }}
