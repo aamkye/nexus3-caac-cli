@@ -1,0 +1,34 @@
+apiVersion: v1
+entries:
+  nexus-config-as-a-code-cli:
+  - apiVersion: v2
+    appVersion: 0.0.6
+    created: "2022-10-06T17:48:23.563870288Z"
+    description: CLI to inject the configuration stored in YAML(s) into Sonatype Nexus
+      Repository Manager
+    digest: b4d5e0008dd5f9fd9c77547734ef8d6d28edb7c6e341404e0deb04c832b7afe4
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    - quickstart
+    - ci
+    - cd
+    - automation
+    - iaac
+    - repository-manager
+    - nexus3
+    maintainers:
+    - email: amadeusz.kryze@gmail.com
+      name: Amadeusz
+    name: nexus-config-as-a-code-cli
+    sources:
+    - https://github.com/sonatype/nexus-public
+    type: application
+    urls:
+    - https://github.com/aamkye/nexus3-caac-cli/releases/download/nexus-config-as-a-code-cli-0.0.6/nexus-config-as-a-code-cli-0.0.6.tgz
+    version: 0.0.6
+generated: "2022-10-06T17:48:23.563876188Z"
