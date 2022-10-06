@@ -10,6 +10,5 @@ curl --silent --show-error --fail --location --output /tmp/kube-score.tar.gz htt
 tar -xf /tmp/kube-score.tar.gz kube-score
 
 # validate charts
-for CHART_DIR in ${CHART_DIRS}; do
-  helm template "${CHART_DIR}" -f "${CHART_DIR}"/values.yaml | ./kube-score score -
-done
+helm template "${CHART_DIR}" -f "${CHART_DIR}"/values.yaml | ./kube-score score -
+
