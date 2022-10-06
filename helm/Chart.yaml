@@ -6,7 +6,7 @@ name: nexus-config-as-a-code-cli
 version: 0.0.1
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
-appVersion: 3.42.0
+appVersion: 1.0.0
 
 description: CLI to inject the configuration stored in YAML(s) into Sonatype Nexus Repository Manager
 

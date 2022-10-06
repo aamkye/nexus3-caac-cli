@@ -874,7 +874,7 @@ First, you create as many configmaps and/or secrets as you want to store the con
 apiVersion: v1
 kind: Secret
 metadata:
-  name: nexus-caac-secrets
+  name: nexus3caac-secrets
   namespace: nexus
   labels:
     app: sonatype-nexus
@@ -886,7 +886,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: sonatype-nexus-caac
+  name: sonatype-nexus3caac
   namespace: nexus
   labels:
     another-label: another-value

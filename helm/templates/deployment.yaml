@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,18 +16,19 @@ spec:
         app: nexus3caac
     spec:
       containers:
-      - name: nexus3caac
-        image: aamkye/nexus3caac-cli:latest
-        args:
-          - from-k8s
-          - --namespace=nexus
-          - --label=nexus3caac
-          - --label-value=active
-          - --resource=both
-          - --watch
-          - --refresh-period=3
-        env:
-          - name: NEXUS3_CAAC_LOG_LEVEL
-            value: DEBUG
+        - name: nexus3caac-watcher
+          image: {{ .Values.nexuscaac.image.repository }}:{{ .Values.nexuscaac.image.tag }}
+          imagePullPolicy: {{ .Values.nexuscaac.image.pullPolicy }}
+          args:
+            - from-k8s
+            - --namespace={{ .Values.nexuscaac.namespace }}
+            - --label=nexus3caac
+            - --label-value=active
+            - --resource=both
+            - --watch
+            - --refresh-period=3
+          env:
+            - name: NEXUS3_CAAC_LOG_LEVEL
+              value: DEBUG
       serviceAccountName: {{ include "nexuscaac.serviceAccountName" . }}
 

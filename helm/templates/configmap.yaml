@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: nexus-caac-secrets
+  name: nexus3caac-secrets
   labels:
-    app: sonatype-nexus
+    app: nexus3caac
     nexus3caac: active
 type: Opaque
 data:
@@ -15,8 +15,9 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nexus-caac
+  name: nexus3caac-config
   labels:
+    app: nexus3caac
     nexus3caac: active
 data:
   nexus.yml: |

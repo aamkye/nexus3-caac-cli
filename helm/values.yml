@@ -1,0 +1,11 @@
+nexuscaac:
+  config: << examples/config/yaml/nexus.yaml >>
+  extraLabels: {}
+  annotations: {}
+  image:
+    repository: aamkye/nexus3caac-cli
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: ""
+  namespace: nexus
+

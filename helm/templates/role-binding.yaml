@@ -1,11 +1,14 @@
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: read-configmaps-secrets
+  name: nexus3caac-read-configmaps-secrets-rbac
+  labels:
+    app: nexus3caac
 subjects:
   - kind: ServiceAccount
     name: {{ include "nexuscaac.serviceAccountName" . }}
 roleRef:
   kind: Role
-  name: configmap-secret-reader
+  name: nexus3caac-configmap-secret-reader-role
   apiGroup: rbac.authorization.k8s.io
