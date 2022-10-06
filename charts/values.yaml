@@ -43,8 +43,9 @@ config:
   tasks: []
 
 image:
-  repository: aamkye/nexus3caac-cli
+  repository: lodufqa/nexus3caac
   tag: latest
   pullPolicy: IfNotPresent
 namespace: nexus
 serviceAccountName: nexus3caac
+refreshPeriod: 10

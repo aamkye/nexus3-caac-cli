@@ -26,7 +26,7 @@ spec:
             - --label-value=active
             - --resource=both
             - --watch
-            - --refresh-period=3
+            - --refresh-period={{ .Values.refreshPeriod }}
           env:
             - name: NEXUS3_CAAC_LOG_LEVEL
               value: DEBUG
