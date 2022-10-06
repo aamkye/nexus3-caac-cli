@@ -3,8 +3,8 @@ name: HELM RELEASE
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - '*'
     paths:
       - 'charts/**'
 
@@ -14,20 +14,20 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
       - name: Configure Git
         run: |
-          git config user.name "Bot"
-          git config user.email "bot@noreply.github.com"
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Install Helm
-        uses: azure/setup-helm@v3
+      - uses: azure/setup-helm@v3
+        with:
+          version: v3.10.0
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@main
+        uses: askcloudarchitech/chart-releaser-action@skip-packaging-option
         env:
           CR_TOKEN: '${{ secrets.CR_TOKEN }}'
