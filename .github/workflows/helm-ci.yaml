@@ -119,7 +119,7 @@ jobs:
 
       - uses: helm/kind-action@main
         with:
-          node_image: kindest/node:${{ matrix.k8s }}
+          node_image: kindest/node:v${{ matrix.k8s }}
 
       - uses: helm/chart-testing-action@main
 
