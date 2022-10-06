@@ -1,5 +1,6 @@
 #!/bin/bash
-set -euo pipefail
+set -euox pipefail
+export PS4='+ $0:$LINENO '
 
 HELM_DOCS_VERSION="0.11.0"
 
