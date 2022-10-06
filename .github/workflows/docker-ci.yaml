@@ -1,4 +1,4 @@
-name: This a workflow title
+name: Docker CI
 on: [push] # When pushing to any branch then run this action
 # Env variable
 env:

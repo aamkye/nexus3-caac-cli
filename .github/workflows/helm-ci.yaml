@@ -1,6 +1,9 @@
-name: Lint and Test Charts
+name: HELM CI - Lint
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     paths:
       - 'helm/**'
