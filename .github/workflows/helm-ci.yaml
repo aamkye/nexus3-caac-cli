@@ -132,7 +132,8 @@ jobs:
     needs:
       - lint-chart
       - lint-docs
-      - kubeval-chart
+      - kube-score-chart
+      - kubeconform-chart
     strategy:
       matrix:
         k8s:
