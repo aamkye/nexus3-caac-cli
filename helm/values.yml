@@ -1,10 +1,44 @@
-config: << examples/config/yaml/nexus.yaml >>
+config:
+  nexus:
+    baseUrl: http://localhost:8081  # URL to reach Nexus 3 UI
+    anonymousAccessEnabled: false   # If anonymous users can access to Nexus 3
+    defaults:
+      adminUser: admin              # Default admin user
+      adminPassword: admin123       # Default admin password
+    deleteUnknownItems:             # To delete existing items in Nexus but not in YAML
+      blobstores: false
+      contentSelectors: false
+      cleanupPolicies: false
+      routingRules: false
+      repos: false
+      ldapConnections: false
+      customLocalUsers: false
+      customRoles: false
+      customPrivileges: false
+      tasks: false
+  realms: []
+  httpClient: {}
+  blobStores: []
+  cleanupPolicies: []
+  routingRules: []
+  contentSelectors: []
+  repositories: []
+  smtpConnection:
+    enabled: false
+  ldapConnections: []
+  customUsers:
+    local: []
+    ldap: []
+  customRoles: []
+  customPrivileges: []
+  certificates: []
+  tasks: []
+
 extraLabels: {}
 annotations: {}
 image:
   repository: aamkye/nexus3caac-cli
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
 namespace: nexus
 
