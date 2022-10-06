@@ -8,7 +8,7 @@ metadata:
     app: nexus3caac
 subjects:
   - kind: ServiceAccount
-    name: {{ include "nexuscaac.serviceAccountName" . }}
+    name: {{ .Values.serviceAccountName }}
 roleRef:
   kind: Role
   name: nexus3caac-configmap-secret-reader-role

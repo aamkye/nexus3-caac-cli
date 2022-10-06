@@ -31,5 +31,5 @@ spec:
           env:
             - name: NEXUS3_CAAC_LOG_LEVEL
               value: DEBUG
-      serviceAccountName: {{ include "nexuscaac.serviceAccountName" . }}
+      serviceAccountName: {{ .Values.serviceAccountName }}
 
