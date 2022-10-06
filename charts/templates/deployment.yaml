@@ -18,11 +18,11 @@ spec:
     spec:
       containers:
         - name: nexus3caac-watcher
-          image: {{ .Values.nexuscaac.image.repository }}:{{ .Values.nexuscaac.image.tag }}
-          imagePullPolicy: {{ .Values.nexuscaac.image.pullPolicy }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             - from-k8s
-            - --namespace={{ .Values.nexuscaac.namespace }}
+            - --namespace={{ .Values.namespace }}
             - --label=nexus3caac
             - --label-value=active
             - --resource=both

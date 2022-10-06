@@ -38,7 +38,7 @@ extraLabels: {}
 annotations: {}
 image:
   repository: aamkye/nexus3caac-cli
-  pullPolicy: IfNotPresent
   tag: "latest"
+  pullPolicy: IfNotPresent
 namespace: nexus
 serviceAccountName: nexus3caac
