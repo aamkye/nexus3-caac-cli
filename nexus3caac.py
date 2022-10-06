@@ -7,9 +7,9 @@ from pathlib import Path
 
 import typer
 
-from nexuscasc.config import ConfigHandler, K8sConfigHandler
-from nexuscasc.exception import NexusCascError
-from nexuscasc import Logger, Operator
+from nexuscaac.config import ConfigHandler, K8sConfigHandler
+from nexuscaac.exception import NexusCaacError
+from nexuscaac import Logger, Operator
 
 app = typer.Typer()
 
@@ -30,19 +30,19 @@ class K8sResources(str, Enum):
 def global_options(
         log_level: LogLevel = typer.Option(
             LogLevel.info,
-            envvar="NEXUS3_CASC_LOG_LEVEL",
+            envvar="NEXUS3_CAAC_LOG_LEVEL",
             show_envvar=True,
             show_default=True,
             help="Set logging level")
 ):
-    os.environ["NEXUS3_CASC_LOG_LEVEL"] = log_level.value
+    os.environ["NEXUS3_CAAC_LOG_LEVEL"] = log_level.value
 
 
 @app.command()
 def from_path(
         config: Path = typer.Option(
             ...,
-            envvar="NEXUS3_CASC_CONFIG_PATH",
+            envvar="NEXUS3_CAAC_CONFIG_PATH",
             exists=True,
             file_okay=True,
             dir_okay=True,
@@ -68,25 +68,25 @@ def from_path(
 def from_k8s(
         namespace: str = typer.Option(
             ...,
-            envvar="NEXUS3_CASC_K8S_NAMESPACE",
+            envvar="NEXUS3_CAAC_K8S_NAMESPACE",
             show_envvar=True,
             metavar="VALUE",
             help="Kubernetes namespace"),
         label: str = typer.Option(
             ...,
-            envvar="NEXUS3_CASC_K8S_LABEL",
+            envvar="NEXUS3_CAAC_K8S_LABEL",
             show_envvar=True,
             metavar="KEY",
             help="Label to filter configmaps or secrets"),
         label_value: str = typer.Option(
             None,
-            envvar="NEXUS3_CASC_K8S_LABEL_VALUE",
+            envvar="NEXUS3_CAAC_K8S_LABEL_VALUE",
             show_envvar=True,
             metavar="VALUE",
             help="Label value to filter configmaps or secrets"),
         resource: K8sResources = typer.Option(
             K8sResources.both,
-            envvar="NEXUS3_CASC_K8S_RESOURCE",
+            envvar="NEXUS3_CAAC_K8S_RESOURCE",
             show_envvar=True,
             metavar="TYPE",
             help="Type of resource to search for"),
@@ -101,7 +101,7 @@ def from_k8s(
         refresh_period: int = typer.Option(
             30,
             min=0,
-            envvar="NEXUS3_CASC_K8S_REFRESH_PERIOD",
+            envvar="NEXUS3_CAAC_K8S_REFRESH_PERIOD",
             metavar="SECONDS",
             show_envvar=True,
             help="Seconds between searches to refresh changes")
@@ -151,7 +151,7 @@ def from_k8s(
 if __name__ == "__main__":
     try:
         app()
-    except NexusCascError as err:
+    except NexusCaacError as err:
         Logger.fatal(f"There was an error: {err.message}")
     except Exception as ex:
         Logger.fatal(f"Unexpected error: {ex}")

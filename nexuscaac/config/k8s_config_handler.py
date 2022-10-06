@@ -7,7 +7,7 @@ from typing import Union, List
 from kubernetes import client, config
 from kubernetes.client import V1ConfigMapList, V1SecretList, CoreV1Api, V1Secret, V1ConfigMap
 
-from nexuscasc.logger import Logger
+from nexuscaac.logger import Logger
 
 
 class ResourceType(Enum):
@@ -57,7 +57,7 @@ class K8sConfigHandler:
     def extract_yaml_strings_from_resources(resources: List[Union[V1ConfigMap, V1Secret]]) -> List[str]:
         yaml_str = list()
         for res in resources:
-            for k in filter(lambda key: re.search("\\.yml|\\.yaml$", key), res.data.keys()):
+            for k in filter(lambda key: re.search("^nexus.*\\.ya?ml$", key), res.data.keys()):
                 if type(res) == V1Secret:
                     Logger.debug(f"Found yaml in key '{k}' for secret '{res.metadata.name}'")
                     yaml_str.append(base64.b64decode(res.data[k]).decode())

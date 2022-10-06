@@ -15,4 +15,4 @@ typer = {extras = ["all"], version = "0.2.1"}
 python_version = "3.8"
 
 [scripts]
-nexus3casc = "python nexus3casc.py"
+nexus3caac = "python nexus3caac.py"

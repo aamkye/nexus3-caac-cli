@@ -14,7 +14,7 @@ class Logger:
 
     @staticmethod
     def _log(level: str, message: str):
-        config_level = os.getenv('NEXUS3_CASC_LOG_LEVEL', 'INFO')
+        config_level = os.getenv('NEXUS3_CAAC_LOG_LEVEL', 'INFO')
         priority, color, stderr = Logger.log_levels[level]
         if priority <= Logger.log_levels[config_level][0]:
             message_colored = typer.style(message, fg=color)

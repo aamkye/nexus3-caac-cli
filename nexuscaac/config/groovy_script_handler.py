@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 from typing import Dict, List
-from nexuscasc.config.yaml_loader import YamlLoader
-from nexuscasc.exception import NexusCascError
+from nexuscaac.config.yaml_loader import YamlLoader
+from nexuscaac.exception import NexusCaacError
 from .constant import GROOVY_CONFIG_YAML
 from pathlib import Path
 import os
-from nexuscasc.config.constant import GROOVY_SCRIPTS_PATH
+from nexuscaac.config.constant import GROOVY_SCRIPTS_PATH
 
 
 @dataclass
@@ -25,7 +25,7 @@ class GroovyScriptHandler(YamlLoader):
             for sc in content.get("scripts"):
                 self.scripts.append(GroovyScriptConfig(**sc))
         else:
-            raise NexusCascError(f"{groovy_yaml_file} does not have a key 'scripts'")
+            raise NexusCaacError(f"{groovy_yaml_file} does not have a key 'scripts'")
 
     @staticmethod
     def read_script_content(script_name: str):

@@ -3,12 +3,12 @@ from typing import List
 
 import typer
 
-from nexuscasc import Logger
-from nexuscasc.api import NexusApiClient, Configuration
-from nexuscasc.api.endpoint import Script, CheckStatus
-from nexuscasc.api.model import GroovyScriptResponseModel
-from nexuscasc.config import ConfigHandler, GroovyScriptHandler, GroovyScriptConfig
-from nexuscasc.exception import NexusCascError
+from nexuscaac import Logger
+from nexuscaac.api import NexusApiClient, Configuration
+from nexuscaac.api.endpoint import Script, CheckStatus
+from nexuscaac.api.model import GroovyScriptResponseModel
+from nexuscaac.config import ConfigHandler, GroovyScriptHandler, GroovyScriptConfig
+from nexuscaac.exception import NexusCaacError
 
 
 class Operator:
@@ -39,7 +39,7 @@ class Operator:
             Logger.debug("Connection OK!")
 
         if not success:
-            raise NexusCascError("Neither nexus.adminPassword nor nexus.defaults.adminPassword are correct")
+            raise NexusCaacError("Neither nexus.adminPassword nor nexus.defaults.adminPassword are correct")
 
     def execute_scripts(self):
         for script in self.groovy_scripts:
@@ -55,7 +55,7 @@ class Operator:
             script_api.read(name)
             Logger.debug(f"Updating script '{name}' on Nexus")
             script_api.update(name, groovy_script_text)
-        except NexusCascError:
+        except NexusCaacError:
             Logger.debug(f"Creating script '{name}' on Nexus")
             script_api.create(name, groovy_script_text)
 

@@ -2,9 +2,9 @@ from typing import Dict, List, Union
 
 from requests import Response
 
-from nexuscasc.api.model.groovy_script import GroovyScriptRequestModel, GroovyScriptResponseModel
-from nexuscasc.api.endpoint.base import BaseEndpoint
-from nexuscasc.exception import NexusScriptApiError
+from nexuscaac.api.model.groovy_script import GroovyScriptRequestModel, GroovyScriptResponseModel
+from nexuscaac.api.endpoint.base import BaseEndpoint
+from nexuscaac.exception import NexusScriptApiError
 
 
 class Script(BaseEndpoint):

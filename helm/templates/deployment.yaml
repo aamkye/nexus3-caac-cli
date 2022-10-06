@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nexus3caac
-        image: quay.io/vjda/nexus3caac-cli:latest
+        image: aamkye/nexus3caac-cli:latest
         args:
           - from-k8s
           - --namespace=nexus
@@ -28,5 +28,5 @@ spec:
         env:
           - name: NEXUS3_CAAC_LOG_LEVEL
             value: DEBUG
-      serviceAccountName: default
+      serviceAccountName: {{ include "nexuscaac.serviceAccountName" . }}
 

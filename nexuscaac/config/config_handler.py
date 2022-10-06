@@ -2,10 +2,10 @@ from collections import defaultdict
 from pathlib import Path
 from typing import List, Dict
 
-from nexuscasc.config.yaml_loader import YamlLoader
-from nexuscasc.logger import Logger
-from nexuscasc.exception import NexusCascError
-from nexuscasc.config.constant import DEFAULT_CONFIG_YAML
+from nexuscaac.config.yaml_loader import YamlLoader
+from nexuscaac.logger import Logger
+from nexuscaac.exception import NexusCaacError
+from nexuscaac.config.constant import DEFAULT_CONFIG_YAML
 
 
 class ConfigHandler(YamlLoader):
@@ -28,7 +28,7 @@ class ConfigHandler(YamlLoader):
             yaml_paths = list(path.glob("*.yaml"))
             yaml_paths.extend(path.glob("*.yml"))
         else:
-            raise NexusCascError(f"Path is not a directory or a file: {path}")
+            raise NexusCaacError(f"Path is not a directory or a file: {path}")
 
         self.config = self._combine_yaml_files(yaml_paths)
 

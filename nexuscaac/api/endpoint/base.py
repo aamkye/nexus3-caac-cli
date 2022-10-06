@@ -1,4 +1,4 @@
-from nexuscasc.api.client import NexusApiClient
+from nexuscaac.api.client import NexusApiClient
 
 
 class BaseEndpoint:

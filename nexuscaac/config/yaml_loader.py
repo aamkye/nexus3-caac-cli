@@ -3,7 +3,7 @@ from typing import Dict
 
 import yaml
 
-from nexuscasc.exception import NexusCascError
+from nexuscaac.exception import NexusCaacError
 
 
 class YamlLoader:
@@ -13,10 +13,10 @@ class YamlLoader:
         """Check if yaml file exists.
 
         Raises:
-            NexusCascError: If yaml file is not found
+            NexusCaacError: If yaml file is not found
         """
         if not file_path.exists() and file_path.is_file():
-            raise NexusCascError(message=f"Yaml file not found in {file_path}")
+            raise NexusCaacError(message=f"Yaml file not found in {file_path}")
 
     @staticmethod
     def get_content_from_file(file_path: Path) -> Dict[str, object]:

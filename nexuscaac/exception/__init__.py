@@ -1,4 +1,4 @@
-class NexusCascError(Exception):
+class NexusCaacError(Exception):
     """Custom exception"""
 
     def __init__(self, message: str, *args, **kwargs):
@@ -6,7 +6,7 @@ class NexusCascError(Exception):
         Exception.__init__(self, message, *args)
 
 
-class NexusScriptApiError(NexusCascError):
+class NexusScriptApiError(NexusCaacError):
     """Script api exception"""
 
     def __init__(self, message: str, path_url: str, status_code: int, *args, **kwargs):

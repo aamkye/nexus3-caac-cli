@@ -1,12 +1,14 @@
-# Nexus3CasC: Configuration As Code for Nexus 3
+# Nexus3CaaC: Configuration As Code for Nexus 3
 
-[![Docker Repository on Quay](https://quay.io/repository/vjda/nexus3casc-cli/status "Docker Repository on Quay")](https://quay.io/repository/vjda/nexus3casc-cli)
+Forked from [sonatype-nexus-community/nexus3-casc-plugin](https://github.com/vjda/nexus3-casc-cli).
+
+# Introduction
 
 CLI to inject the configuration stored in YAML(s) into [Sonatype Nexus repository manager 3](https://help.sonatype.com/repomanager3).
 
 ## What it is for
 
-Nexus3CasC provides you a way to configure a Nexus 3 server to perform the following operations:
+Nexus3CaaC provides you a way to configure a Nexus 3 server to perform the following operations:
 
 * Changing admin password
 * Enabling or disabling...
@@ -44,13 +46,13 @@ Nexus3CasC provides you a way to configure a Nexus 3 server to perform the follo
 
 Nexus 3 provides a powerful [scripting API](https://help.sonatype.com/repomanager3/rest-and-integration-api/script-api) to simplify provisioning and executing other complex tasks. These scripts are written in Groovy language.
 
-Nexus3CasC takes advantage of this capability to inject some scripts in Nexus 3 using its API rest. It also reads the configuration from YAML files, connects to the Nexus 3 server and uses its API to invoke every script sending the configuration values as input arguments.
+Nexus3CaaC takes advantage of this capability to inject some scripts in Nexus 3 using its API rest. It also reads the configuration from YAML files, connects to the Nexus 3 server and uses its API to invoke every script sending the configuration values as input arguments.
 
 The CLI is written in python 3.8 and the scripts for Nexus 3 are written in Groovy.
 
 ### Configuration items
 
-As said before, you can use YAML files to define your custom configuration. You can place this YAML where you want and pass it as command argument to Nexus3CasC CLI.
+As said before, you can use YAML files to define your custom configuration. You can place this YAML where you want and pass it as command argument to Nexus3CaaC CLI.
 
 #### Default values
 
@@ -93,7 +95,7 @@ cleanupPolicies: []
 routingRules: []
 
 # Create new content selector to select specific content
-contentSelectors: []  
+contentSelectors: []
 
 # Create new repositories to store artifacts from different sources
 repositories: []
@@ -503,7 +505,7 @@ customPrivileges:
   # These are privileges attributed to filtered content within a format, evaluated against a content selector
   - type: repository-content-selector
     name: my-content-selectors-all
-    description: Add permission for content selector for raw repositories  
+    description: Add permission for content selector for raw repositories
     actions:
       - BROWSE
       - ADD
@@ -725,7 +727,6 @@ tasks:
         - WED
         - FRI
         - SUN
-  
 ```
 
 `typeId` and task-specific `properties` can be guessed either:
@@ -791,25 +792,25 @@ After that, you have two ways to run the CLI:
 $ pipenv shell
 
 # Run the CLI with:
-$ ./nexus3casc.py
+$ ./nexus3caac.py
 ```
 
 Or, you also can do this:
 
 ```text
 # Use pipenv run to load the virtualenv and execute the CLI
-$ pipenv run nexus3casc
+$ pipenv run nexus3caac
 ```
 
 If you run it without passing any argument, the help section will be displayed:
 
 ```text
-$ pipenv run nexus3casc
-Usage: nexus3casc.py [OPTIONS] COMMAND [ARGS]...
+$ pipenv run nexus3caac
+Usage: nexus3caac.py [OPTIONS] COMMAND [ARGS]...
 
 Options:
   --log-level [ERROR|INFO|DEBUG]  Set logging level  [env var:
-                                  NEXUS3_CASC_LOG_LEVEL; default: INFO]
+                                  NEXUS3_CAAC_LOG_LEVEL; default: INFO]
 
   --install-completion            Install completion for the current shell.
   --show-completion               Show completion for the current shell, to
@@ -825,14 +826,14 @@ Commands:
 If you want to see the help text for a subcommand you can do:
 
 ```sh
-pipenv run nexus3casc [COMAND] --help
+pipenv run nexus3caac [COMAND] --help
 ```
 
 For instance:
 
 ```text
-$ pipenv run nexus3casc from-path --help
-Usage: nexus3casc.py from-path [OPTIONS]
+$ pipenv run nexus3caac from-path --help
+Usage: nexus3caac.py from-path [OPTIONS]
 
   Read config from YAML file(s) and inject it into a Nexus 3 instance
   server.
@@ -842,23 +843,23 @@ Usage: nexus3casc.py from-path [OPTIONS]
 
 Options:
   --config PATH  Path or directory to load YAML file(s)  [env var:
-                 NEXUS3_CASC_CONFIG_PATH; required]
+                 NEXUS3_CAAC_CONFIG_PATH; required]
 
   --help         Show this message and exit.
 ```
 
 ## Run the CLI as docker container
 
-Nexus3CasC is published on [quay.io](https://quay.io/repository/vjda/nexus3casc-cli). You can use it as docker image executing the following command:
+Nexus3CaaC is published on [quay.io](https://quay.io/repository/vjda/nexus3caac-cli). You can use it as docker image executing the following command:
 
 ```sh
-docker run -v /path/to/directory:/tmp/config quay.io/vjda/nexus3casc-cli:latest from-path --config /tmp/config/nexus.yaml
+docker run -v /path/to/directory:/tmp/config quay.io/vjda/nexus3caac-cli:latest from-path --config /tmp/config/nexus.yaml
 ```
 
-Or, you can set `NEXUS3_CASC_CONFIG_PATH` instead of passing `--config /tmp/config/nexus.yaml`
+Or, you can set `NEXUS3_CAAC_CONFIG_PATH` instead of passing `--config /tmp/config/nexus.yaml`
 
 ```sh
-docker run -v /path/to/directory:/tmp/config -e NEXUS3_CASC_CONFIG_PATH=/tmp/config/nexus.yaml quay.io/vjda/nexus3casc-cli:latest from-path
+docker run -v /path/to/directory:/tmp/config -e NEXUS3_CAAC_CONFIG_PATH=/tmp/config/nexus.yaml quay.io/vjda/nexus3caac-cli:latest from-path
 ```
 
 > You must use `-v` to mount a volume so that the YAML file is available inside the docker container. Otherwise, it cannot access to it and the command will fail.
@@ -873,11 +874,11 @@ First, you create as many configmaps and/or secrets as you want to store the con
 apiVersion: v1
 kind: Secret
 metadata:
-  name: nexus-casc-secrets
+  name: nexus-caac-secrets
   namespace: nexus
   labels:
     app: sonatype-nexus
-    nexus3casc: active
+    nexus3caac: active
 type: Opaque
 data:
   nexus-secrets.yaml: bmV4dXM6CiAgICBhZG1pblBhc3N3b3JkOiBteVN1cDNyUEBzc3cwcmQ=
@@ -885,11 +886,11 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: sonatype-nexus-casc
+  name: sonatype-nexus-caac
   namespace: nexus
   labels:
     another-label: another-value
-    nexus3casc: active
+    nexus3caac: active
 data:
   nexus.yml: |
     nexus:
@@ -907,25 +908,25 @@ data:
   greeting.txt: hello world
 ```
 
-You have to put your configuration in keys ending with a valid YAML file extension (`.yaml` or `.yml`). In the above example only `nexus-secrets.yaml` and `nexus.yml` will be considered. Also, notice that the label `nexus3casc` exists in both manifests. You can put the label name (required) and the label value (optional) you want.
+You have to put your configuration in keys ending with a valid YAML file extension (`.yaml` or `.yml`). In the above example only `nexus-secrets.yaml` and `nexus.yml` will be considered. Also, notice that the label `nexus3caac` exists in both manifests. You can put the label name (required) and the label value (optional) you want.
 
 For instance, you can execute it as follows:
 
 ```sh
-pipenv run nexus3casc from-k8s --namespace nexus --label nexus3casc --label-value active --resource both --local --watch --refresh-period 10
+pipenv run nexus3caac from-k8s --namespace nexus --label nexus3caac --label-value active --resource both --local --watch --refresh-period 10
 ```
 
 This is what each argument does:
 
 * `--local`: searches for your `KUBECONFIG` location (by default at `~/.kube/config`) and gets the current k8s cluster connection
 * `--resource both --namespace nexus`: find secrets and configmaps in namespace `nexus`
-* `--label nexus3casc --label-value active`: filter secrets and configmaps which have the label `nexus3casc: active`
+* `--label nexus3caac --label-value active`: filter secrets and configmaps which have the label `nexus3caac: active`
 * `--watch`: watches for changes in those resources. If one of their yaml contents are updated, then it will configure Nexus again
 * `--refresh-period 10`: searches for changes every 10 seconds
 
-You can type `pipenv run nexus3casc --help` to get help.
+You can type `pipenv run nexus3caac --help` to get help.
 
-### Use Nexus3CasC as sidecar on Kubernetes
+### Use Nexus3CaaC as sidecar on Kubernetes
 
 One of the capabilities of this CLI is to be used as a container inside a kubernetes pod. This is useful if you want to create a sidecar injector for your Nexus 3 configuration and reload changes when the configuration changes.
 
@@ -937,9 +938,9 @@ You can do that by performing the following actions:
 
 See [examples/kubernetes](examples/kubernetes) to see how to do it.
 
-<!-- ## Development
+## Development
 
-TBD -->
+
 
 <!-- ## Contributions
 
@@ -955,5 +956,6 @@ This project has been inspired by many others. Big thanks to:
 * <https://github.com/cloudogu/nexus-claim>
 * <https://github.com/rgl/nexus-vagrant>
 * <https://github.com/samrocketman/nexus3-config-as-code>
+* <https://github.com/vjda/nexus3-casc-cli>
 
 You guys really rock! :clap: :metal:
