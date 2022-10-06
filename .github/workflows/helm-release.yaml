@@ -27,7 +27,17 @@ jobs:
         with:
           version: v3.10.0
 
+      - name: custom packaging
+        run: |
+          VERSION=${{github.ref_name}}
+          rm -rf .cr-release-packages
+          mkdir -p .cr-release-packages
+          helm package charts --app-version=${VERSION:1} --version=${VERSION:1} --destination=.cr-release-packages
+
       - name: Run chart-releaser
+        # switch back to helm/chart-releaser-action if this contribution is ever merged
         uses: askcloudarchitech/chart-releaser-action@skip-packaging-option
+        with:
+          skip_packaging: true
         env:
-          CR_TOKEN: '${{ secrets.CR_TOKEN }}'
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
