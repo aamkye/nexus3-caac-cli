@@ -9,7 +9,7 @@ metadata:
     nexus3caac: active
 type: Opaque
 data:
-  nexus-yaml: |
+  nexus-secrets.yaml: |
 {{- toYaml .Values.configSecrets | nindent 4 }}
 
 ---
@@ -22,5 +22,5 @@ metadata:
     app: nexus3caac
     nexus3caac: active
 data:
-  nexus-yaml: |
+  nexus.yaml: |
 {{- toYaml .Values.config | nindent 4 }}
