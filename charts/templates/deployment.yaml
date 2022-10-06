@@ -3,7 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nexus3caac-deployment
-  namespace: {{ .Values.namespace }}
   labels:
     app: nexus3caac
 spec:

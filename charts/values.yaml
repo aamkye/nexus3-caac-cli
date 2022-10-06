@@ -1,7 +1,7 @@
 ######
 # helm repo add nexus3-caac https://aamkye.github.io/nexus3-caac-cli/
 # helm repo update
-# helm upgrade --install nexus3-caac/nexus-config-as-a-code-cli -f helm-values/nexus-caac.yml nexus3-caac
+# helm upgrade --install nexus3-caac nexus3-caac/nexus-config-as-a-code-cli -f helm-values/nexus-caac.yml
 # helm uninstall nexus3-caac
 ######
 

@@ -3,7 +3,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: nexus3caac-read-configmaps-and-secrets-rbac
-  namespace: {{ .Values.namespace }}
   labels:
     app: nexus3caac
 subjects:
