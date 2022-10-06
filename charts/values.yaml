@@ -5,14 +5,11 @@
 # helm uninstall nexus3-caac
 ######
 
-configSecrets:
-  nexus:
-    adminPassword: "admin1234"
-
 config:
   nexus:
     baseUrl: http://localhost:8081
     anonymousAccessEnabled: false
+    adminPassword: "admin1234"
     defaults:
       adminUser: admin
       adminPassword: admin123
