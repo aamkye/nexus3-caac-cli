@@ -3,10 +3,10 @@ name: nexus-config-as-a-code-cli
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 0.0.16
+version: 0.0.18
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
-appVersion: 1.0.0
+appVersion: 0.0.18
 
 description: CLI to inject the configuration stored in YAML(s) into Sonatype Nexus Repository Manager
 

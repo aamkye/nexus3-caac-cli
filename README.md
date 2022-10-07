@@ -958,5 +958,6 @@ This project has been inspired by many others. Big thanks to:
 * <https://github.com/samrocketman/nexus3-config-as-code>
 * <https://github.com/vjda/nexus3-casc-cli>
 * <https://github.com/askcloudarchitech/go-rest-api-kubernetes-example>
+* <https://github.com/jtognazzi/nexus3-casc-cli>
 
 You guys really rock! :clap: :metal:
