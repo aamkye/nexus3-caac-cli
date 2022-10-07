@@ -938,13 +938,15 @@ You can do that by performing the following actions:
 
 See [examples/kubernetes](examples/kubernetes) to see how to do it.
 
-## Development
+## K8s Development
 
+### Setup Nexus3-CaaC
 
-
-<!-- ## Contributions
-
-TBD -->
+```bash
+> helm repo add nexus3-caac https://aamkye.github.io/nexus3-caac-cli/
+> helm repo update
+> helm upgrade --install nexus3-caac nexus3-caac/nexus-config-as-a-code-cli --create-namespace -n <namespace> -f <values.yaml>
+```
 
 ## Special thanks
 
